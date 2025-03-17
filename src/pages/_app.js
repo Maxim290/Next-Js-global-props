@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps, globalData }) {
 
 MyApp.getInitialProps = async () => {
     const globalData = await fetch(
-        "https://jsonplaceholder.typicode.com/todos/1"
+        "https://jsonplaceholder.typicode.com/todos/15"
     ).then((res) => res.json());
     return { globalData };
 };
