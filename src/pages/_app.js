@@ -1,5 +1,21 @@
-import "@/styles/globals.css";
+import "../styles/globals.css";
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps, globalData }) {
+    return (
+        <div>
+            <header>
+                <h1>{globalData.title}</h1>
+            </header>
+            <Component {...pageProps} globalData={globalData} />
+        </div>
+    );
 }
+
+MyApp.getInitialProps = async () => {
+    const globalData = await fetch(
+        "https://jsonplaceholder.typicode.com/todos/1"
+    ).then((res) => res.json());
+    return { globalData };
+};
+
+export default MyApp;
