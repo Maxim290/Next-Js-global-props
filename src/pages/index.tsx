@@ -1,4 +1,6 @@
-export default function Home({ globalData }) {
+import { MyAppProps } from "./_app";
+
+export default function Home({ globalData }: MyAppProps) {
     return (
         <div>
             <h2>Home Page</h2>

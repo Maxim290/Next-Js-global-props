@@ -1,6 +1,15 @@
+import { AppProps } from "next/app";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps, globalData }) {
+interface GlobalData {
+    title: string;
+}
+
+export interface MyAppProps extends AppProps {
+    globalData: GlobalData;
+}
+
+function MyApp({ Component, pageProps, globalData }: MyAppProps) {
     return (
         <div>
             <header>
@@ -11,7 +20,7 @@ function MyApp({ Component, pageProps, globalData }) {
     );
 }
 
-MyApp.getInitialProps = async () => {
+MyApp.getInitialProps = async (): Promise<{ globalData: GlobalData }> => {
     const globalData = await fetch(
         "https://jsonplaceholder.typicode.com/todos/15"
     ).then((res) => res.json());
